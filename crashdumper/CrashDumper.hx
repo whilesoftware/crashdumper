@@ -52,6 +52,8 @@ class CrashDumper
 	public var closeOnCrash:Bool;
 	public var postCrashMethod:CrashDumper->Void;
 	public var customDataMethod:CrashDumper->Void;
+
+	public var writeToStdout:Bool = true;
 	
 	public var session:SessionData;
 	public var system:SystemData;
@@ -221,6 +223,10 @@ class CrashDumper
 		}
 		
 		var errorMessage:String = errorMessageStr();
+
+		if (writeToStdout) {
+			trace(errorMessage);
+		}
 		
 		if (customDataMethod != null)
 		{
